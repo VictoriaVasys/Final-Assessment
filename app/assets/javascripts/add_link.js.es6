@@ -1,13 +1,14 @@
 $( document ).ready(function(){
-  $("body").on("click", ".add-link-button", addLink)
+  $(".add-link-button").on("click", addLink)
 })
 
 function addLink(e) {
   e.preventDefault();
   postLink()
-  .then(function(){
-    const newLink = Link.last
+  .then(function(links){
     debugger
+    newIndex = links.length - 1
+    const newLink = links[newIndex]
     $('.links').prepend(`
       <div class="link">
         Title: ${newLink.title}
@@ -15,7 +16,7 @@ function addLink(e) {
         Read? ${newLink.read}
       </div>
       `)
-  })
+  }).fail(displayFailure);
   
   // $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 
@@ -27,19 +28,19 @@ function addLink(e) {
 }
 
 function postLink() {
-  const title = $('input[name="link-title"]').val()
-  const url = $('input[name="link-url"]').val()
+  const title = $('input[id="link_title"]').val()
+  const url = $('input[id="link_url"]').val()
 
   const formData = {
     title: title,
     url: url
   }
 
-  $.ajax({
+  return $.ajax({
     type: "POST",
     url: "/api/v1/links/",
-    data: { formData },
-  }).fail(displayFailure);
+    data: formData,
+  })
 }
 
 // function updateLinkStatus(link) {
