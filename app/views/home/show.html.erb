@@ -1,1 +1,9 @@
+<%= form_for :session, url: {controller: 'sessions', action: 'create'} do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password%>
+  <%= f.submit "Log In"%>
+  <% end %>
+
 <%= link_to "Sign up by clicking here.", sign_up_path %>

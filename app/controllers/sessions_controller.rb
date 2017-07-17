@@ -3,15 +3,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
-      flash[:success] = "Log In Successful"
+      flash[:success] = "Log in successful"
       session[:user_id] = user.id
-      if current_admin?
-        redirect_to admin_dashboard_path
-      else
-        redirect_to dashboard_path
-      end
+      redirect_to links_path
     else
-      flash.now[:danger] = "Unsuccessful Log In"
+      flash.now[:danger] = "Unsuccessful login"
       render :new
     end
   end
