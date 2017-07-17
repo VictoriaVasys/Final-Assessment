@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "As a visitor" do
+describe "As a visitor" do
   scenario "user can sign up" do
     visit "/"  
     click_on "Sign up by clicking here."

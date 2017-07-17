@@ -4,3 +4,23 @@
   <%= link_to "Sign Up", sign_up_path  %>
   <%= link_to "Log In", root_path %>
 <% end %>
+
+<div class="form">
+  <%= form_for @link do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+    <%= f.submit "Add your link!", class: "add-link-button" %>
+  <% end %>
+</div>
+
+<!-- # <#% @links.each do |link| %>
+# <div class="container">
+#   <div class="links">
+#     Title: <%#= link.title %>
+#     URL: <%#= link.title %>
+#     Read? <%#= link.read? %>
+#   </div>
+#   
+# </div> -->

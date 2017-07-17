@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "As an authenticated user" do
+describe "As an authenticated user" do
   scenario "user can login" do
     user = create(:user)
     visit "/"
