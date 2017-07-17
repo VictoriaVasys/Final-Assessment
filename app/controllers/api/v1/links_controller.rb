@@ -10,13 +10,14 @@ class Api::V1::LinksController < ApplicationController
   end
   
   def create
-    link = current_user.links.create(link_params)
+    @link = current_user.links.create(link_params)
     @links = Link.all
     
-    if link.save
+    if @link.save
       render json: @links
     else
-      render json: link.errors.full_messages, status: 500
+      # flash[:danger] = "Could not create link because #{@link.errors.full_messages.join(", ")}"
+      render json: @link.errors.full_messages, status: 500
     end
 
     # flash[:notice] = "Your comment was added." // flash useless w ajax (we're rendering partial)

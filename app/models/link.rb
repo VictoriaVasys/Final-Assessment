@@ -6,7 +6,6 @@ class Link < ActiveRecord::Base
   before_validation :check_url
   
   def check_url
-    binding.pry
     errors.add(:url, "is not valid") if !URI(url).host
   end
   

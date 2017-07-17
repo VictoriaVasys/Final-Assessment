@@ -12,6 +12,6 @@ describe "An authenticated user", :js => :true do
     
     expect(page).to have_content("Title: Turing")
     expect(page).to have_content("URL: https://turing.io")
-    expect(page).to have_content("Read? False")
+    expect(page).to have_content("Read? false")
   end
 end
