@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to links_path
     else
       flash.now[:danger] = "Unsuccessful login"
-      redirect_to root_path
+      render :new
     end
   end
 
