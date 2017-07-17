@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root to: "links#index"
+  # root to: "links#index"
+  root to: "home#show"
+  
+  get '/sign_up', to: 'sign_up#show'
 
   resources :links, only: [:index]
 
