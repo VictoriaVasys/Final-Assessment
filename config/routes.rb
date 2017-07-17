@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # root to: "links#index"
-  root to: "home#show"
+  root to: "sessions#new"
+  post '/', to: 'sessions#create'
   
   get '/sign_up', to: 'users#new'
   
