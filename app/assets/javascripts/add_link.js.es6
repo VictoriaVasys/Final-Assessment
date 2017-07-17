@@ -6,13 +6,12 @@ function addLink(e) {
   e.preventDefault();
   postLink()
   .then(function(links){
-    debugger
-    newIndex = links.length - 1
+    const newIndex = links.length - 1
     const newLink = links[newIndex]
     $('.links').prepend(`
       <div class="link">
         Title: ${newLink.title}
-        URL: ${newLink.title}
+        URL: ${newLink.url}
         Read? ${newLink.read}
       </div>
       `)
