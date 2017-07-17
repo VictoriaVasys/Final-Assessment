@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "An authenticated user" do
+describe "An authenticated user", :js => :true do
   it "can submit a new link" do
     user = create(:user)
     login(user)

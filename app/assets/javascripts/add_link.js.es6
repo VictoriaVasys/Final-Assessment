@@ -4,32 +4,48 @@ $( document ).ready(function(){
 
 function addLink(e) {
   e.preventDefault();
-  getLinkInfo()
-  var $link = $(this).parents('.link');
-  var linkId = $link.data('link-id');
+  postLink()
+  .then(function(){
+    const newLink = Link.last
+    debugger
+    $('.links').prepend(`
+      <div class="link">
+        Title: ${newLink.title}
+        URL: ${newLink.title}
+        Read? ${newLink.read}
+      </div>
+      `)
+  })
+  
+  // $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 
-  $.ajax({
-    type: "PATCH",
-    url: "/api/v1/links/" + linkId,
-    data: { read: true },
-  }).then(updateLinkStatus)
-    .fail(displayFailure);
+  
+  // var $link = $(this).parents('.link');
+  // var linkId = $link.data('link-id');
+
+  
 }
 
-function getLinkInfo() {
+function postLink() {
   const title = $('input[name="link-title"]').val()
   const url = $('input[name="link-url"]').val()
 
-  return new Food ({
-    name: name,
-    calories: calories
-  })
+  const formData = {
+    title: title,
+    url: url
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "/api/v1/links/",
+    data: { formData },
+  }).fail(displayFailure);
 }
 
 // function updateLinkStatus(link) {
 //   $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 // }
 // 
-// function displayFailure(failureData){
-//   console.log("FAILED attempt to update Link: " + failureData.responseText);
-// }
+function displayFailure(failureData){
+  console.log("FAILED attempt to update Link: " + failureData.responseText);
+}

@@ -15,12 +15,16 @@
   <% end %>
 </div>
 
-<!-- # <#% @links.each do |link| %>
-# <div class="container">
-#   <div class="links">
-#     Title: <%#= link.title %>
-#     URL: <%#= link.title %>
-#     Read? <%#= link.read? %>
-#   </div>
-#   
-# </div> -->
+<div class="links">
+
+  <% @links.each do |link| %>
+    <div class="container">
+      <div class="link">
+        Title: <%= link.title %>
+        URL: <%= link.title %>
+        Read? <%= link.read %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
