@@ -11,6 +11,7 @@ RSpec.describe "As a visitor" do
     fill_in "user[password]", with: "123"
     fill_in "user[password_confirmation]", with: "123"
     click_on "Complete sign up!"
+    save_and_open_page
     
     expect(current_path).to eq(links_path)
     expect(page).to have_content("You successfully created an account!")
