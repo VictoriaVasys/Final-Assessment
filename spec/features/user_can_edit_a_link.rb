@@ -1,15 +1,11 @@
 require 'rails_helper'
 
-describe "An authenticated user" do
+feature "An authenticated user" do
   it "can edit a link" do
     user = create(:user_with_links)
-    login(user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit links_path
     
-#     And I click on "Edit" (button),
-    # I should be redirected (or fill in there)
-    # And I change the content,
-    # And I click submit (or outside the editable box),
-    # I should see a flash msg for success or reason why edit was invalid.
     within first('.link') do
       click_on('Edit')
     end

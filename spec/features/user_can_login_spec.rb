@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe "As an authenticated user" do
-  scenario "user can login" do
+feature "An authenticated user" do
+  scenario "can login" do
     user = create(:user)
     visit "/"
     within("form") do
@@ -14,17 +14,19 @@ describe "As an authenticated user" do
     expect(page).to have_content("Log in successful")
   end
   
-  scenario "user gets a flash message with unsuccessful login" do
-    user = create(:user)
-    visit "/"
-    within("form") do
-      fill_in 'session_email', with: user.email
-      fill_in 'session_password', with: "hi"
-      click_on "Log In"
+  context "enters the wrong password" do
+    scenario "user gets a flash message with unsuccessful login" do
+      user = create(:user)
+      visit "/"
+      within("form") do
+        fill_in 'session_email', with: user.email
+        fill_in 'session_password', with: "hi"
+        click_on "Log In"
+      end
+      
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content("Unsuccessful login")
     end
-    
-    expect(current_path).to eq(root_path)
-    expect(page).to have_content("Unsuccessful login")
   end
   
 end
