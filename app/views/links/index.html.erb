@@ -22,11 +22,11 @@
   <% @links.each do |link| %>
     <div class="container">
       <div class="link" data-link-id="<%= link.id %>">
-        <span class="title">Title: <%= link.title %></span>
-        <span class="url">URL: <%= link.url %></span>
-        <span class="read">Read? <%= link.read %></span>
+        <div class="title">Title: <%= link.title %></div>
+        <div class="url">URL: <%= link.url %></div>
+        <div class="read">Read? <%= link.read %></div>
         <%= button_to "Edit" %>
-
+        <br>
       </div>
     <% end %>
   </div>
