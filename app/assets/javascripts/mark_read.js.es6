@@ -22,11 +22,6 @@ function updateLinkStatus(link) {
   $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 }
 
-function displayFailure(failureData){
-  console.log("FAILED attempt to update Link: " + failureData.responseText);
-  // return alert("Update Link failed: " + failureData.responseText)
-}
-
 function makeFieldsEditable(e) {
   e.preventDefault()
   $(e.target).hide()
@@ -53,5 +48,7 @@ function updateAttributes(e) {
     type: "PATCH",
     url: "/api/v1/links/" + linkId,
     data: attrData,
-  }).fail(displayFailure);
+    success: displayEditSuccess
+  })
+  .fail(displayFailure)
 }

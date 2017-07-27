@@ -6,6 +6,7 @@ function addLink(e) {
   e.preventDefault();
   postLink()
   .then(function(links){
+    displayAddSuccess()
     const newIndex = links.length - 1
     const newLink = links[newIndex]
     $('.links').prepend(`
@@ -15,8 +16,7 @@ function addLink(e) {
         Read? ${newLink.read} <br>
       </div>
       `)
-  }).fail(displayAddFailure);
-
+  }).fail(displayFailure);
 }
 
 function postLink() {
@@ -35,20 +35,3 @@ function postLink() {
   })
 }
 
-function displayAddFailure(failureData){
-  console.log("FAILED attempt to add Link: " + failureData.responseText);
-  $('form').append(`
-    <div class="alert alert-danger">
-      ${failureData.responseJSON.message}
-    </div>
-  `)
-  clearAlert()
-}
-
-function clearAlert() {
-  window.setTimeout(() => {
-    $('.alert').fadeTo(500, 0).slideUp(500, () => {
-      $('.alert').remove()
-    })
-  }, 5000)
-}

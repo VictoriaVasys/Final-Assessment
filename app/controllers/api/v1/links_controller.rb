@@ -8,7 +8,7 @@ class Api::V1::LinksController < ApplicationController
       render status: 500, 
       json: {
         message: "Failed to update your link; #{@link.errors.full_messages}"
-      }.to_json
+      }
     end
   end
   
