@@ -14,4 +14,8 @@ class Link < ActiveRecord::Base
     end
   end
   
+  def self.reverse
+    order('id DESC')
+  end
+  
 end
