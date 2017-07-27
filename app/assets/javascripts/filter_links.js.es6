@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $(".filter-links #query").keyup(filterLinks)
-
+  $('.filter .show-read').on("click", showReadLinks)
+  $('.filter .show-unRead').on("click", showUnreadLinks)
 })
 
 function filterLinks(){
@@ -30,5 +31,12 @@ function filterLinks(){
   })
 }
 
+function showReadLinks() {
+  
+}
+
+function showunReadLinks() {
+  
+}
 
 

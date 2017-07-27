@@ -30,7 +30,8 @@
       <%= label_tag(:query, "Search by:") %>
       <%= text_field_tag(:query) %>
     <% end %>
-
+    <%= link_to "Show Read Links" , links_path, class: "show-read"%> &nbsp &nbsp
+    <%= link_to "Show Unread Links" , links_path, class: "show-unread"%>
     <hr>
   </div>
 </div>

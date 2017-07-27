@@ -1,8 +1,10 @@
 require 'rails_helper'
 
-describe "Authenticated user", :js => :true do
-  it "can filter links by keystroke" do
+feature "Authenticated user", :js => :true do
+  scenario "can filter links by keystroke" do
     user = create(:user_with_links)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit links_path
 
     fill_in "query", with: "LI"
 
