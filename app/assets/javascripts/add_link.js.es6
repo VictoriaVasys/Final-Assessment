@@ -10,12 +10,12 @@ function addLink(e) {
     const newLink = links[newIndex]
     $('.links').prepend(`
       <div class="link">
-        Title: ${newLink.title}
-        URL: ${newLink.url}
-        Read? ${newLink.read}
+        Title: ${newLink.title} <br>
+        URL: ${newLink.url} <br>
+        Read? ${newLink.read} <br>
       </div>
       `)
-  }).fail(displayFailure);
+  }).fail(displayAddFailure);
   
   // $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 
@@ -46,6 +46,7 @@ function postLink() {
 //   $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 // }
 // 
-function displayFailure(failureData){
-  console.log("FAILED attempt to update Link: " + failureData.responseText);
+function displayAddFailure(failureData){
+  console.log("FAILED attempt to add Link: " + failureData.responseText);
+  return alert("Failed to add your link; " + failureData.responseText)
 }

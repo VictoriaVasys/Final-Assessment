@@ -1,14 +1,16 @@
 FactoryGirl.define do
   factory :user do
-    email "MyString"
+    sequence :email do |n|
+      "email#{n}@email.com"
+    end
     password "pass"
     password_confirmation "pass"
-  end
-  
-  factory :user_with_links do
-    after(:create) do |user|
-      3.times do
-        user.links << create(:link, user_id: user.id)
+    
+    factory :user_with_links do
+      after(:create) do |user|
+        3.times do
+          user.links << create(:link, user_id: user.id)
+        end
       end
     end
   end

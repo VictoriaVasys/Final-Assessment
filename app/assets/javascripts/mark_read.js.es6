@@ -23,6 +23,7 @@ function updateLinkStatus(link) {
 
 function displayFailure(failureData){
   console.log("FAILED attempt to update Link: " + failureData.responseText);
+  return alert("Update Link failed: " + failureData.responseText)
 }
 
 function makeFieldsEditable(e) {

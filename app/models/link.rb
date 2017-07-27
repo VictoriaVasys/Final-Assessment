@@ -3,10 +3,15 @@ class Link < ActiveRecord::Base
   validates :url, presence: true
   
   belongs_to :user
-  before_validation :check_url
+  validate :valid_url
   
-  def check_url
-    errors.add(:url, "is not valid") if !URI(url).host
+  def valid_url
+    unless !url
+      uri = URI.parse(url)
+      unless (uri.is_a?(URI::HTTP) && !uri.host.nil?)
+        errors.add(:url, 'Not a Valid URL')
+      end
+    end
   end
   
 end
