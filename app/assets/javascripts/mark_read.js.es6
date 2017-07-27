@@ -1,6 +1,7 @@
 $( document ).ready(function(){
   $("body").on("click", ".mark-as-read", markAsRead)
-  $("input[value='Edit']").on("click", makeFieldsEditable)
+  $("body").on("click", ".edit-link-button", makeFieldsEditable)
+  $("body").on('click', ".update-link-button", updateAttributes)
 })
 
 function markAsRead(e) {
@@ -28,29 +29,29 @@ function displayFailure(failureData){
 
 function makeFieldsEditable(e) {
   e.preventDefault()
-  debugger
-  // var $link = $(this).parents('.link');
-  const url = e.target.parentElement.previousElementSibling.previousElementSibling.contentEditable
-  const title = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling
-  url.contentEditable = true
-  title.contentEditable = true
+  $(e.target).hide()
+  const submitButton= $('<input type="button" class="update-link-button" value="Update Link"/>')
+  $(e.target.parentElement).append(submitButton)
   
-  // var linkId = $link.data('link-id');
-  $(url).on('blur', upadateAttributes())
-  $(title).on('blur', upadateAttributes())
+  $(this).siblings('.title')[0].contentEditable = true
+  $(this).siblings('.url')[0].contentEditable = true
 }
 
 function updateAttributes(e) {
+  e.preventDefault()
+  const linkId = e.target.parentElement.dataset.linkId
+  const title = $(this).siblings('.title')[0].innerHTML.split(": ")[1]
+  const url = $(this).siblings('.url')[0].innerHTML.split(": ")[1]
+  $(this).siblings('.title')[0].contentEditable = false
+  $(this).siblings('.url')[0].contentEditable = false
   
+  $(this).siblings('.edit-link-button').show()
+  $(e.target).remove()
   
-  // e.preventDefault()
-  // var $link = $(this).parents('.link');
-  // var linkId = $link.data('link-id');
-  // 
-  // $.ajax({
-  //   type: "PATCH",
-  //   url: "/api/v1/links/" + linkId,
-  //   data: { read: true },
-  // }).then(updateLinkStatus)
-  //   .fail(displayFailure);
+  const attrData = {title: title, url: url}
+  $.ajax({
+    type: "PATCH",
+    url: "/api/v1/links/" + linkId,
+    data: attrData,
+  }).fail(displayFailure);
 }
