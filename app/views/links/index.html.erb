@@ -24,6 +24,15 @@
       <%= f.submit "Add your link!", class: "add-link-button btn btn-default" %>
     <% end %>
   </div>
+
+  <div class="filter">
+    <%= form_tag(links_path, method: "get", class: "filter-links") do %>
+      <%= label_tag(:query, "Search by:") %>
+      <%= text_field_tag(:query) %>
+    <% end %>
+
+    <hr>
+  </div>
 </div>
 </div>
 
