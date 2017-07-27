@@ -6,6 +6,7 @@ function addLink(e) {
   e.preventDefault();
   postLink()
   .then(function(links){
+    displayAddSuccess()
     const newIndex = links.length - 1
     const newLink = links[newIndex]
     $('.links').prepend(`
@@ -15,15 +16,7 @@ function addLink(e) {
         Read? ${newLink.read} <br>
       </div>
       `)
-  }).fail(displayAddFailure);
-  
-  // $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
-
-  
-  // var $link = $(this).parents('.link');
-  // var linkId = $link.data('link-id');
-
-  
+  }).fail(displayFailure);
 }
 
 function postLink() {
@@ -42,11 +35,3 @@ function postLink() {
   })
 }
 
-// function updateLinkStatus(link) {
-//   $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
-// }
-// 
-function displayAddFailure(failureData){
-  console.log("FAILED attempt to add Link: " + failureData.responseText);
-  return alert("Failed to add your link; " + failureData.responseText)
-}

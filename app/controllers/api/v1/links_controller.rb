@@ -5,7 +5,10 @@ class Api::V1::LinksController < ApplicationController
     if @link.update_attributes(link_params)
       render json: @link
     else
-      render json: @link.errors.full_messages, status: 500
+      render status: 500, 
+      json: {
+        message: "Failed to update your link; #{@link.errors.full_messages}"
+      }
     end
   end
   
@@ -16,7 +19,10 @@ class Api::V1::LinksController < ApplicationController
     if @link.save
       render json: @links
     else
-      render json: @link.errors.full_messages, status: 500
+      render status: 500, 
+      json: {
+        message: "Failed to add your link; #{@link.errors.full_messages}"
+      }
     end
   end
   
