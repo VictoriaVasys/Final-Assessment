@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "An authenticated user" do
-  it "can submit a new link" do
+  it "can edit a link" do
     user = create(:user_with_links)
     login(user)
     

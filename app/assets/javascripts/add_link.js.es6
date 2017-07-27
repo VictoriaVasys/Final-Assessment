@@ -15,7 +15,7 @@ function addLink(e) {
         Read? ${newLink.read} <br>
       </div>
       `)
-  }).fail(displayFailure);
+  }).fail(displayAddFailure);
   
   // $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 
@@ -46,7 +46,7 @@ function postLink() {
 //   $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 // }
 // 
-// function displayFailure(failureData){
-//   // console.log("FAILED attempt to update Link: " + failureData.responseText);
-//   return alert("Update Link failed; " + failureData.responseText)
-// }
+function displayAddFailure(failureData){
+  console.log("FAILED attempt to add Link: " + failureData.responseText);
+  return alert("Failed to add your link; " + failureData.responseText)
+}
