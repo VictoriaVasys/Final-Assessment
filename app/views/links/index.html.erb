@@ -1,3 +1,5 @@
+<div class="wrapper">
+
 <% if current_user %>
   <%= link_to "Sign Out", logout_path  %>
 <% else %>
@@ -6,29 +8,35 @@
 <% end %>
 <br>
 
-<div class="form">
-  <%= form_for @link do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :url %>
-    <%= f.text_field :url %>
-    <%= f.submit "Add your link!", class: "add-link-button" %>
-  <% end %>
+<div class="big-center">
+  <h1>Your Links!</h1>
+
+  <div class="form-inline">
+    <%= form_for @link do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="form-group">
+        <%= f.label :url %>
+        <%= f.text_field :url %>
+      </div>
+      <%= f.submit "Add your link!", class: "add-link-button" %>
+    <% end %>
+  </div>
+</div>
 </div>
 
 <br>
 <div class="links">
-
   <% @links.each do |link| %>
-    <div class="container">
-      <div class="link" data-link-id="<%= link.id %>">
-        <div class="title">Title: <%= link.title %></div>
-        <div class="url">URL: <%= link.url %></div>
-        <div class="read">Read? <%= link.read %></div>
-        <%= button_to "Edit" %>
-        <br>
-      </div>
-    <% end %>
-  </div>
+    <div class="link" data-link-id="<%= link.id %>">
+      <div class="title">Title: <%= link.title %></div>
+      <div class="url">URL: <%= link.url %></div>
+      <div class="read">Read? <%= link.read %></div>
+      <%= button_to "Edit" %>
+      <br>
+    </div>
+  <% end %>
 
 </div>
