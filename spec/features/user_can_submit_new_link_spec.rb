@@ -16,7 +16,7 @@ feature "An authenticated user", :js => :true do
     expect(page).to have_content("Read? false")
   end
   
-  skip context "does not enter link title" do
+  context "does not enter link title" do
     scenario "receives alert that link wasn't created" do
       Capybara.default_max_wait_time = 5
       user = create(:user)
@@ -28,13 +28,11 @@ feature "An authenticated user", :js => :true do
         click_on "Add your link!"
       end
       
-      text = page.driver.browser.switch_to.alert.text
-      expect(text).to have_content("Failed to add your link; ")
-
+      expect(page).to have_content("Failed to add your link; [\"Title can't be blank\"]")
     end
   end
   
-  skip context "does not enter a url" do
+  context "does not enter a url" do
     scenario "receives alert that link wasn't created" do
       Capybara.default_max_wait_time = 5
       user = create(:user)
@@ -46,13 +44,12 @@ feature "An authenticated user", :js => :true do
         click_on "Add your link!"
       end
       
-      text = page.driver.browser.switch_to.alert.text
-      expect(text).to have_content("Failed to add your link; ")
+      expect(page).to have_content("Failed to add your link; [\"Url can't be blank\", \"Url Not a Valid URL\"]")
 
     end
   end
   
-  skip context "enters an invalid url" do
+  context "enters an invalid url" do
     scenario "receives alert that link wasn't created" do
       Capybara.default_max_wait_time = 5
       user = create(:user)
@@ -64,8 +61,7 @@ feature "An authenticated user", :js => :true do
         click_on "Add your link!"
       end
       
-      text = page.driver.browser.switch_to.alert.text
-      expect(text).to have_content("Failed to add your link; ")
+      expect(page).to have_content("Failed to add your link; [\"Url Not a Valid URL\"]")
 
     end
   end

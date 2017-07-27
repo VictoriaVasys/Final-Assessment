@@ -16,14 +16,7 @@ function addLink(e) {
       </div>
       `)
   }).fail(displayAddFailure);
-  
-  // $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
 
-  
-  // var $link = $(this).parents('.link');
-  // var linkId = $link.data('link-id');
-
-  
 }
 
 function postLink() {
@@ -42,11 +35,20 @@ function postLink() {
   })
 }
 
-// function updateLinkStatus(link) {
-//   $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
-// }
-// 
 function displayAddFailure(failureData){
   console.log("FAILED attempt to add Link: " + failureData.responseText);
-  return alert("Failed to add your link; " + failureData.responseText)
+  $('form').append(`
+    <div class="alert alert-danger">
+      ${failureData.responseJSON.message}
+    </div>
+  `)
+  clearAlert()
+}
+
+function clearAlert() {
+  window.setTimeout(() => {
+    $('.alert').fadeTo(500, 0).slideUp(500, () => {
+      $('.alert').remove()
+    })
+  }, 5000)
 }
