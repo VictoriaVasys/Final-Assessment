@@ -1,7 +1,7 @@
 class Api::V1::LinksController < ApplicationController
 
   def update
-    @link = Link.find(params[:id])
+    @link = Link.find(params[:id].to_i)
     if @link.update_attributes(link_params)
       render json: @link
     else
@@ -16,12 +16,8 @@ class Api::V1::LinksController < ApplicationController
     if @link.save
       render json: @links
     else
-      # flash[:danger] = "Could not create link because #{@link.errors.full_messages.join(", ")}"
       render json: @link.errors.full_messages, status: 500
     end
-
-    # flash[:notice] = "Your comment was added." // flash useless w ajax (we're rendering partial)
-    # redirect_to article_path(article) # don't want to redirect (doesn't make sense with an ajax req)
   end
   
   private

@@ -3,7 +3,8 @@ require 'rails_helper'
 feature "An authenticated user", :js => :true do
   scenario "can submit a new link" do
     user = create(:user)
-    login(user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit links_path
     within("form") do
       fill_in 'link_title', with: "Turing"
       fill_in 'link_url', with: "https://turing.io"
@@ -19,7 +20,8 @@ feature "An authenticated user", :js => :true do
     scenario "receives alert that link wasn't created" do
       Capybara.default_max_wait_time = 5
       user = create(:user)
-      login(user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      visit links_path
       within("form") do
         fill_in 'link_title', with: ""
         fill_in 'link_url', with: "https://turing.io"
@@ -36,7 +38,8 @@ feature "An authenticated user", :js => :true do
     scenario "receives alert that link wasn't created" do
       Capybara.default_max_wait_time = 5
       user = create(:user)
-      login(user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      visit links_path
       within("form") do
         fill_in 'link_title', with: "wowwww"
         fill_in 'link_url', with: ""
@@ -53,7 +56,8 @@ feature "An authenticated user", :js => :true do
     scenario "receives alert that link wasn't created" do
       Capybara.default_max_wait_time = 5
       user = create(:user)
-      login(user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      visit links_path
       within("form") do
         fill_in 'link_title', with: "Hi!"
         fill_in 'link_url', with: "turing.io"
