@@ -1,7 +1,7 @@
 class Api::V1::LinksController < ApplicationController
 
   def update
-    @link = Link.find(params[:id].to_i)
+    @link = current_user.links.find(params[:id].to_i)
     if @link.update_attributes(link_params)
       render json: @link
     else
@@ -14,7 +14,7 @@ class Api::V1::LinksController < ApplicationController
   
   def create
     @link = current_user.links.create(link_params)
-    @links = Link.all
+    @links = current_user.links
     
     if @link.save
       render json: @links
