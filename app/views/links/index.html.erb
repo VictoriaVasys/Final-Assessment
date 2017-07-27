@@ -16,12 +16,12 @@
       <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title %>
-      </div>
+      </div>&nbsp;&nbsp;
       <div class="form-group">
         <%= f.label :url %>
         <%= f.text_field :url %>
-      </div>
-      <%= f.submit "Add your link!", class: "add-link-button" %>
+      </div>&nbsp;&nbsp;
+      <%= f.submit "Add your link!", class: "add-link-button btn btn-default" %>
     <% end %>
   </div>
 </div>
@@ -34,7 +34,7 @@
       <div class="title">Title: <%= link.title %></div>
       <div class="url">URL: <%= link.url %></div>
       <div class="read">Read? <%= link.read %></div>
-      <%= button_to "Edit" %>
+      <%= button_to "Edit", class: "btn btn-default" %>
       <br>
     </div>
   <% end %>
