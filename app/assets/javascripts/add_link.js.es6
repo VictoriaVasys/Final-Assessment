@@ -11,9 +11,10 @@ function addLink(e) {
     const newLink = links[newIndex]
     $('.links').prepend(`
       <div class="link">
-        Title: ${newLink.title} <br>
-        URL: ${newLink.url} <br>
-        Read? ${newLink.read} <br>
+        <div class="title">Title: ${newLink.title} </div>
+        <div class="url">URL: ${newLink.url} </div>
+        <div class="read-status">Read? ${newLink.read} </div>
+        <input type="button" class="edit-link-button btn btn-default" value="Edit Link"/>
       </div>
       `)
   }).fail(displayFailure);

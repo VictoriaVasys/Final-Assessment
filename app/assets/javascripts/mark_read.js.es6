@@ -1,5 +1,6 @@
 $( document ).ready(function(){
-  $("body").on("click", ".mark-as-read", markAsRead)
+  $("body").on("click", ".mark-read-button", markAsRead)
+  $("body").on("click", ".mark-unread-button", markAsUnread)
   $("body").on("click", ".edit-link-button", makeFieldsEditable)
   $("body").on('click', ".update-link-button", updateAttributes)
 })
@@ -9,46 +10,37 @@ function markAsRead(e) {
 
   var $link = $(this).parents('.link');
   var linkId = $link.data('link-id');
+  
+  $(this).siblings('.mark-unread-button').show()
+  $(e.target).hide()
+  $link.addClass('link-read')
+  $link.removeClass('link')
+  event.target.previousElementSibling.previousElementSibling.previousElementSibling.textContent = "Read? true"
 
   $.ajax({
     type: "PATCH",
     url: "/api/v1/links/" + linkId,
-    data: { read: true },
-  }).then(updateLinkStatus)
+    data: { read: true }
+  })
     .fail(displayFailure);
 }
 
-function updateLinkStatus(link) {
-  $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
-}
+function markAsUnread(e) {
+  e.preventDefault();
 
-function makeFieldsEditable(e) {
-  e.preventDefault()
+  var $link = $(this).parents('.link-read');
+  var linkId = $link.data('link-id');
+  
+  $(this).siblings('.mark-read-button').show()
   $(e.target).hide()
-  const submitButton= $('<input type="button" class="update-link-button" value="Update Link"/>')
-  $(e.target.parentElement).append(submitButton)
-  
-  $(this).siblings('.title')[0].contentEditable = true
-  $(this).siblings('.url')[0].contentEditable = true
-}
+  $link.removeClass('link-read')
+  $link.addClass('link')
+  event.target.previousElementSibling.previousElementSibling.textContent = "Read? false"
 
-function updateAttributes(e) {
-  e.preventDefault()
-  const linkId = e.target.parentElement.dataset.linkId
-  const title = $(this).siblings('.title')[0].innerHTML.split(": ")[1]
-  const url = $(this).siblings('.url')[0].innerHTML.split(": ")[1]
-  $(this).siblings('.title')[0].contentEditable = false
-  $(this).siblings('.url')[0].contentEditable = false
-  
-  $(this).siblings('.edit-link-button').show()
-  $(e.target).remove()
-  
-  const attrData = {title: title, url: url}
   $.ajax({
     type: "PATCH",
     url: "/api/v1/links/" + linkId,
-    data: attrData,
-    success: displayEditSuccess
+    data: { read: false }
   })
-  .fail(displayFailure)
+    .fail(displayFailure);
 }

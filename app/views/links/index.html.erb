@@ -30,11 +30,22 @@
 <br>
 <div class="links">
   <% @links.each do |link| %>
-    <div class="link" data-link-id="<%= link.id %>">
+    <% if link.read? %>
+      <div class="link-read" data-link-id="<%= link.id %>">
+    <% else %>
+      <div class="link" data-link-id="<%= link.id %>">
+    <% end %>
       <div class="title">Title: <%= link.title %></div>
       <div class="url">URL: <%= link.url %></div>
-      <div class="read">Read? <%= link.read %></div>
+      <div class="read-status">Read? <%= link.read %></div>
       <input type="button" class="edit-link-button btn btn-default" value="Edit Link"/>
+      <% if link.read? %>
+        <input type="button" class="mark-unread-button btn btn-default" value="Mark as Unread"/>
+        <input type="button" style="display: none" class="mark-read-button btn btn-default" value="Mark as Read"/>
+      <% else %>
+        <input type="button" style="display: none" class="mark-unread-button btn btn-default" value="Mark as Unread"/>
+        <input type="button" class="mark-read-button btn btn-default" value="Mark as Read"/>
+      <% end %>
       <br>
     </div>
   <% end %>
