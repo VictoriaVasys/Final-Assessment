@@ -6,7 +6,7 @@ $( document ).ready(function(){
 function makeFieldsEditable(e) {
   e.preventDefault()
   $(e.target).hide()
-  const submitButton= $('<input type="button" class="update-link-button" value="Update Link"/>')
+  const submitButton= $('<input type="button" class="update-link-button btn btn-defalt" value="Update Link"/>')
   $(e.target.parentElement).append(submitButton)
   
   $(this).siblings('.title')[0].contentEditable = true
