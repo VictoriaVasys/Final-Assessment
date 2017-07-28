@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $(".filter-links #query").keyup(filterLinks)
   $('.filter .show-read').on("click", showReadLinks)
-  $('.filter .show-unRead').on("click", showUnreadLinks)
+  $('.filter .show-unread').on("click", showUnreadLinks)
 })
 
 function filterLinks(){
@@ -31,12 +31,20 @@ function filterLinks(){
   })
 }
 
-function showReadLinks() {
-  
+function showReadLinks(e) {
+  e.preventDefault()
+  var links = $(".link")
+  var readLinks = $(".link-read")
+  links.hide()
+  readLinks.show()
 }
 
-function showunReadLinks() {
-  
+function showUnreadLinks(e) {
+  e.preventDefault()
+  var links = $(".link")
+  var readLinks = $(".link-read")
+  links.show()
+  readLinks.hide()
 }
 
 

@@ -3,7 +3,7 @@ $( document ).ready(function(){
 })
 
 function addLink(e) {
-  e.preventDefault();
+  e.preventDefault()
   postLink()
   .then(function(links){
     displayAddSuccess()
