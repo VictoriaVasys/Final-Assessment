@@ -9,6 +9,7 @@ function markAsRead(e) {
   var $link = $(this).parents('.link');
   var linkId = $link.data('link-id');
   var urlForHotLinks = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent.split(': ')[1]
+  debugger
   $(this).siblings('.mark-unread-button').show()
   $(e.target).hide()
   $link.addClass('link-read')
