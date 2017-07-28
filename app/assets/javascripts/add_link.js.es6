@@ -7,14 +7,14 @@ function addLink(e) {
   postLink()
   .then(function(links){
     displayAddSuccess()
-    const newIndex = links.length - 1
-    const newLink = links[newIndex]
+    const newLink = links[0]
     $('.links').prepend(`
       <div class="link">
         <div class="title">Title: ${newLink.title} </div>
         <div class="url">URL: ${newLink.url} </div>
         <div class="read-status">Read? ${newLink.read} </div>
         <input type="button" class="edit-link-button btn btn-default" value="Edit Link"/>
+        <input type="button" class="mark-read-button btn btn-default" value="Mark as Read"/>
       </div>
       `)
   }).fail(displayFailure);
@@ -32,7 +32,7 @@ function postLink() {
   return $.ajax({
     type: "POST",
     url: "/api/v1/links/",
-    data: formData,
+    data: formData
   })
 }
 

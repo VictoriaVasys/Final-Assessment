@@ -1,8 +1,6 @@
 $( document ).ready(function(){
   $("body").on("click", ".mark-read-button", markAsRead)
   $("body").on("click", ".mark-unread-button", markAsUnread)
-  $("body").on("click", ".edit-link-button", makeFieldsEditable)
-  $("body").on('click', ".update-link-button", updateAttributes)
 })
 
 function markAsRead(e) {

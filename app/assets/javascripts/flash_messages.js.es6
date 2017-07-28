@@ -1,6 +1,6 @@
 function displayFailure(failureData){
   console.log("FAILED attempt: " + failureData.responseText);
-  $('form').append(`
+  $('.big-center').append(`
     <div class="alert alert-danger">
       ${failureData.responseJSON.message}
     </div>
@@ -9,7 +9,7 @@ function displayFailure(failureData){
 }
 
 function displayEditSuccess(){
-  $('form').append(`
+  $('.big-center').append(`
     <div class="alert alert-success">
       "Link updated successfully"
     </div>
@@ -18,7 +18,7 @@ function displayEditSuccess(){
 }
 
 function displayAddSuccess(){
-  $('form').append(`
+  $('.big-center').append(`
     <div class="alert alert-success">
       "Link added successfully"
     </div>
