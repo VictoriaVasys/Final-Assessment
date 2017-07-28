@@ -1,4 +1,7 @@
 # URLockBox
+[URLockBox Production]()
+[Hot Reads Service Repo](https://github.com/VictoriaVasys/m4-final-hot-links)
+[Hot Reads Service Production](https://vv-m4-final-hot-links.herokuapp.com/) 
 
 ## Victoria Vasys Turing Mod 4 Final Assessment
 This is the final assessment for Mod 4 of the Turing School of Software and Design. Students were permitted a total of 16 hours across two days to complete authentication, submission and viewing of valid links, editing links, dynamically marking and filtering links, and building a separate service that tracked "hot reads" (see [Application](#application) for more details on use).
@@ -78,7 +81,8 @@ Tests run via RSpec & Selenium Webdriver
 
 ## Links
 * [URI Lockbox Production](https://vv-m4-final-assessment.herokuapp.com/)
-* [Hot Reads Service]()
+* [Hot Reads Service Repo](https://github.com/VictoriaVasys/m4-final-hot-links)
+* [Hot Reads Service Production](https://vv-m4-final-hot-links.herokuapp.com/) 
 * [VV's Waffle Project Managment](https://waffle.io/VictoriaVasys/Final-Assessment)
 * [Issue Reporting](https://github.com/VictoriaVasys/Final-Assessment/issues)
 * [Turing Starter Kit](https://github.com/turingschool/m4-final-starter)
