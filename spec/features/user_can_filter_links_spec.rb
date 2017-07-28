@@ -23,7 +23,7 @@ feature "Authenticated user", :js => :true do
     expect(page).to_not have_content(user.links.last.title)
   end
   
-  context "clicks 'show read links'" do
+  skip context "clicks 'show read links'" do
     scenario "all read links shown" do
       user.links.first.update(read:true)
       
@@ -35,7 +35,7 @@ feature "Authenticated user", :js => :true do
     end
   end
   
-  context "clicks 'show unread links'" do
+  skip context "clicks 'show unread links'" do
     scenario "all unread links shown" do
       user.links.first.update(read:true)
       
