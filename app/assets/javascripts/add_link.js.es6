@@ -15,6 +15,7 @@ function addLink(e) {
         <div class="read-status">Read? ${newLink.read} </div>
         <input type="button" class="edit-link-button btn btn-default" value="Edit Link"/>
         <input type="button" class="mark-read-button btn btn-default" value="Mark as Read"/>
+        <input type="button" style="display: none" class="mark-read-button btn btn-default" value="Mark as Read"/>
       </div>
       `)
   }).fail(displayFailure);
