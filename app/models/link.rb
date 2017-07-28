@@ -18,14 +18,4 @@ class Link < ActiveRecord::Base
     order('id DESC')
   end
   
-  def hot_links_status
-    if url == HotLinksService.hot_links[0]
-      "TOP LINK"
-    elsif HotLinksService.hot_links.include?(url)
-      "HOT"
-    else
-      ""
-    end
-  end
-  
 end
