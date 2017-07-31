@@ -8,6 +8,16 @@ function displayFailure(failureData){
   clearAlert()
 }
 
+function displayError(errorMessage){
+  console.log("FAILED attempt: " + errorMessage);
+  $('.big-center').append(`
+    <div class="alert alert-danger">
+      ${errorMessage}
+    </div>
+  `)
+  clearAlert()
+}
+
 function displayEditSuccess(){
   $('.big-center').append(`
     <div class="alert alert-success">

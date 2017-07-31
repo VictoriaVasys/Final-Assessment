@@ -32,12 +32,12 @@ feature "An authenticated user", :js => :true do
       end
       
       find_button('Update Link').click
+      expect(page).to have_content("Failed to update your link; ['URL Cannot Contain Spaces']")
       
       within first('.link') do
         expect(page).to have_content("Title: #{user.links.last.title}")
         expect(page).to have_content("URL: #{user.links.last.url}")
       end
-      expect(page).to have_content("Failed to update your link; ['Url Not a Valid URL']")
     end
   end
   
