@@ -5,6 +5,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
+require "support/wait_for_ajax"
 
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(

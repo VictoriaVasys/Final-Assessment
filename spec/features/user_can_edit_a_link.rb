@@ -20,11 +20,11 @@ feature "An authenticated user", :js => :true do
     expect(page).to have_content("Link updated successfully")
   end
   
-  skip context "user submits an invalid url" do 
+  context "user submits an invalid url" do 
     scenario "should return a flash failure" do
       user = create(:user_with_links)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      
+
       visit links_path
       within first('.link') do
         click_on('Edit Link')
@@ -32,12 +32,12 @@ feature "An authenticated user", :js => :true do
       end
       
       find_button('Update Link').click
+      expect(page).to have_content("Failed to update your link; ['URL Cannot Contain Spaces']")
       
       within first('.link') do
         expect(page).to have_content("Title: #{user.links.last.title}")
         expect(page).to have_content("URL: #{user.links.last.url}")
       end
-      expect(page).to have_content("Failed to update your link; ['Url Not a Valid URL']")
     end
   end
   

@@ -23,13 +23,17 @@ function updateAttributes(e) {
   
   $(this).siblings('.edit-link-button').show()
   $(e.target).remove()
-  
   const attrData = {title: title, url: url}
-  $.ajax({
-    type: "PATCH",
-    url: "/api/v1/links/" + linkId,
-    data: attrData,
-    success: displayEditSuccess
-  })
-  .fail(displayFailure)
+  
+  if (url.split(' ').length > 1) {
+    displayError("Failed to update your link; ['URL Cannot Contain Spaces']")
+  } else {
+    $.ajax({
+      type: "PATCH",
+      url: "/api/v1/links/" + linkId,
+      data: attrData,
+      success: displayEditSuccess
+    })
+    .fail(displayFailure)
+  }
 }

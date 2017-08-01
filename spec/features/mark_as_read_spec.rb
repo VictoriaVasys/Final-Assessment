@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "Authenticated user", :js => :true do
-  skip context "marks a link as read" do
+  context "marks a link as read" do
     scenario "css changes and read status is changed to true" do
       user = create(:user_with_links)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -9,7 +9,6 @@ feature "Authenticated user", :js => :true do
       
       within first('.link .read-status') do
         expect(page).to have_text("false")
-        
       end
       
       within first('.link') do
@@ -23,7 +22,7 @@ feature "Authenticated user", :js => :true do
     end
   end
   
-  skip context "marks read link as unread" do
+  context "marks read link as unread" do
     scenario "css changes back to original and read-status is false" do
       user = create(:user_with_links)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -40,9 +39,8 @@ feature "Authenticated user", :js => :true do
       
       within first('.link-read') do
         click_on "Mark as Unread"
-        
-        expect(page).to have_css('div.link')
       end
+      expect(page).to have_css('.link')
 
       within first('.link .read-status') do
         expect(page).to have_text("false")
