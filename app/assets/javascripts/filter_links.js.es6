@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $(".filter-links #query").keyup(filterLinks)
+  $("#query").keyup(filterLinks)
   $('.filter .show-read').on("click", showReadLinks)
   $('.filter .show-unread').on("click", showUnreadLinks)
 })
@@ -13,8 +13,8 @@ function filterLinks(){
   readLinks.hide()
 
   links.each(function(index, link){
-    var title = link.children[0].innerText.split(":")[1].toLowerCase()
-    var url = link.children[1].innerText.split("URL:")[1].toLowerCase()
+    var title = link.children[0].textContent.split(": ")[1].toLowerCase()
+    var url = link.children[1].textContent.split("URL: ")[1].toLowerCase()
 
     if(title.includes(filter) || url.includes(filter)){
       $(this).show()

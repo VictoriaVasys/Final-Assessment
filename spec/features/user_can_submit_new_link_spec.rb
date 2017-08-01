@@ -16,7 +16,7 @@ feature "An authenticated user", :js => :true do
     expect(page).to have_content("Read? false")
   end
   
-  skip context "submits a link" do
+  context "submits a link" do
     scenario "the link should appear at the top of the page & maintain order" do
       user = create(:user_with_links)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)

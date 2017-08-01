@@ -24,7 +24,7 @@ feature "An authenticated user", :js => :true do
     scenario "should return a flash failure" do
       user = create(:user_with_links)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      
+
       visit links_path
       within first('.link') do
         click_on('Edit Link')
