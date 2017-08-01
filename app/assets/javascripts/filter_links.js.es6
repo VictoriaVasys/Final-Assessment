@@ -22,9 +22,9 @@ function filterLinks(){
   })
   
   readLinks.each(function(index, link){
-    var title = link.children[0].innerText.split(":")[1].toLowerCase()
-    var url = link.children[1].innerText.split("URL:")[1].toLowerCase()
-
+    var title = link.children[0].textContent.split(":")[1].toLowerCase()
+    var url = link.children[1].textContent.split("URL:")[1].toLowerCase()
+  
     if(title.includes(filter) || url.includes(filter)){
       $(this).show()
     }
