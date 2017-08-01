@@ -14,7 +14,7 @@ class Api::V1::LinksController < ApplicationController
   
   def create
     @link = current_user.links.create(link_params)
-    @links = current_user.links.reverse
+    @links = current_user.links.reverse_order
     
     if @link.save
       render json: @links
