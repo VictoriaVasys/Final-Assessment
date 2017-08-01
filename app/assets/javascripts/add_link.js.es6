@@ -10,6 +10,7 @@ function addLink(e) {
     const newLink = links[0]
     $('.links').prepend(`
       <div class="link">
+        <h6></h6>
         <div class="title">Title: ${newLink.title} </div>
         <div class="url">URL: ${newLink.url} </div>
         <div class="read-status">Read? ${newLink.read} </div>
