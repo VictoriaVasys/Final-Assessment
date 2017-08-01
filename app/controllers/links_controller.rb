@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   def index
     if current_user
       @link = Link.new
-      @links = current_user.links.reverse
+      @links = current_user.links.reverse_order
       @hot_links = HotLinksService.hot_links
     else 
       render file: "/public/404"

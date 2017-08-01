@@ -14,7 +14,7 @@ class Link < ActiveRecord::Base
     end
   end
   
-  def self.reverse
+  def self.reverse_order
     order('id DESC')
   end
   
